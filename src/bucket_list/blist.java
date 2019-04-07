@@ -1,19 +1,54 @@
 package bucket_list;
 import java.io.*;
-import java.util.Arrays;
+import java.util.*;
 
 public class blist {
 	public static void main(String[] args) throws IOException {
 		BufferedReader infile = new BufferedReader(new FileReader("blist.in"));
 		int N = Integer.parseInt(infile.readLine());
-		int buckets = 0;
-		int[][] info = new int[N][3];
+		ArrayList<Integer> sT = new ArrayList<>();
+		ArrayList<Integer> eT = new ArrayList<>();
+		ArrayList<Integer> cB = new ArrayList<>();
+		
 		for (int i = 0; i < N; i++) {
-			String line = infile.readLine();
-			for (int j = 0; j < 3; j++) {
-				info[i][j] = Integer.parseInt(line.split(" ")[j]);
+			String s = infile.readLine();
+			sT.add(Integer.parseInt(s.split(" ")[0]));
+			eT.add(Integer.parseInt(s.split(" ")[1]));
+			cB.add(Integer.parseInt(s.split(" ")[2]));
+		}
+		
+		infile.close();
+		
+		int maxTime = 0;
+		for (int i = 0; i < N; i++) {
+			if (eT.get(i) > maxTime) {
+				maxTime = eT.get(i);
 			}
 		}
-		System.out.println(Arrays.toString(info[2]));
+		
+		int maxB = 0;
+		for (int i = 0; i < maxTime; i++) {
+			int curB = 0;
+			for (int j = 0; j < N; j++) {
+				if (between(sT.get(j), eT.get(j), i)) {
+					curB += cB.get(j);
+				}
+			}
+			if (curB > maxB) {
+				maxB = curB;
+			}
+		}
+		BufferedWriter outfile = new BufferedWriter(new FileWriter("blist.out"));
+		outfile.write(Integer.toString(maxB));
+		outfile.write("\n");
+		outfile.close();
+	}
+	
+	private static boolean between(int start, int end, int num) {
+		if (num >= start && num <= end) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
