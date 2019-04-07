@@ -5,7 +5,6 @@ import java.util.*;
 public class blist {
 	public static void main(String[] args) throws IOException {
 		BufferedReader infile = new BufferedReader(new FileReader("blist.in"));
-		PrintWriter outfile = new PrintWriter(new BufferedWriter(new FileWriter("blist.out")));
 		int N = Integer.parseInt(infile.readLine());
 		ArrayList<Integer> sT = new ArrayList<>();
 		ArrayList<Integer> eT = new ArrayList<>();
@@ -39,9 +38,9 @@ public class blist {
 				maxB = curB;
 			}
 		}
+		PrintWriter outfile = new PrintWriter("blist.out");
 		outfile.println(maxB);
 		outfile.close();
-		System.out.println(maxB);
 	}
 	
 	public static boolean between(int start, int end, int num) {
