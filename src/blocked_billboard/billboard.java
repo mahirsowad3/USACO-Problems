@@ -44,17 +44,9 @@ public class billboard {
 	}
 	
 	public static int calculateOverlap(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4) {
-		if (!inRange(x1, x2, x3)) {
-			return 0;
-		} else {
-			return Math.abs(Math.max(x1, x3) - Math.min(x2, x4)) * Math.abs(Math.max(y1, y3) - Math.min(y2, y4));
+		if (Math.max(x1, x3) < Math.min(x2, x4) && Math.max(y1, y3) < Math.min(y2, y4)) {
+			return Math.abs(Math.min(x2, x4) - Math.max(x1, x3))  * Math.abs(Math.min(y2, y4) - Math.max(y1, y3));
 		}
-	}
-	
-	public static boolean inRange(int start, int stop, int x) {
-		if (x >= start && x <= stop) {
-			return true;
-		}
-		return false;
+		return 0;
 	}
 }
