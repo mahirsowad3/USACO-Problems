@@ -47,6 +47,14 @@ public class measurement {
 					currCow = "b";
 					changes += 1;
 				} 
+				else if (E == maxOfThree(B, E, M) && !currCow.equals("e")) {
+					currCow = "e";
+					changes += 1;
+				}
+				else if (M == maxOfThree(B, E, M) && !currCow.equals("m")) {
+					currCow = "m";
+					changes += 1;
+				}
 			}
 			if (logs[i][0].equals("Elsie")) {
 				E = newValue(E, logs[i][1]);
@@ -70,6 +78,14 @@ public class measurement {
 					currCow = "e";
 					changes += 1;
 				}
+				else if (B == maxOfThree(B, E, M) && !currCow.equals("b")) {
+					currCow = "b";
+					changes += 1;
+				} 
+				else if (M == maxOfThree(B, E, M) && !currCow.equals("m")) {
+					currCow = "m";
+					changes += 1;
+				}
 			}
 			if (logs[i][0].equals("Mildred")) {
 				M = newValue(M, logs[i][1]);
@@ -91,6 +107,14 @@ public class measurement {
 				}
 				else if (M == maxOfThree(B, E, M) && !currCow.equals("m")) {
 					currCow = "m";
+					changes += 1;
+				}
+				else if (B == maxOfThree(B, E, M) && !currCow.equals("b")) {
+					currCow = "b";
+					changes += 1;
+				} 
+				else if (E == maxOfThree(B, E, M) && !currCow.equals("e")) {
+					currCow = "e";
 					changes += 1;
 				}
 			}
