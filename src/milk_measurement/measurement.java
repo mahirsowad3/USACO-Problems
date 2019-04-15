@@ -20,7 +20,6 @@ public class measurement {
 		
 		infile.close();
 		
-		System.out.println(Arrays.deepToString(orderedLogs(days, logs)));
 		logs = orderedLogs(days, logs);
 		String currCow = " ";
 		int changes = 0;
