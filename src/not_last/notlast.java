@@ -8,21 +8,25 @@ public class notlast {
 		BufferedReader infile = new BufferedReader(new FileReader("notlast.in"));
 		
 		int N = Integer.parseInt(infile.readLine());
-		HashMap <String, Integer> logs = new HashMap<String, Integer>();
+		String[] cows = {"Bessie", "Elsie", "Daisy", "Gertie", "Maggie", "Annabelle", "Henrietta"};
+		Integer[] milk = new Integer[7];
 		
-		logs.put("Bessie", 0); 
-		logs.put("Elsie", 0);
-		logs.put("Daisy", 0); 
-		logs.put("Gertie", 0);
-		logs.put("Annabelle", 0); 
-		logs.put("Maggie", 0);
-		logs.put("Henrietta", 0); 
+		for (int i = 0; i < 7; i++) {
+			milk[i] = 0;
+		}
 		
 		for (int i = 0; i < N; i++) {
 			String s = infile.readLine();
-			Integer newValue = logs.get(s.split(" ")[0]) + Integer.parseInt(s.split(" ")[1]);
-			logs.put(s.split(" ")[0], newValue);
+			Integer newValue = milk[Arrays.asList(cows).indexOf(s.split(" ")[0])] + Integer.parseInt(s.split(" ")[1]);
+			milk[Arrays.asList(cows).indexOf(s.split(" ")[0])] = newValue;
 		}
+		
+		System.out.println(Collections.min(Arrays.asList(milk)));
+		System.out.println(Arrays.asList(milk).indexOf(7));
+	}
+	
+	public static void secondSmallest(int[] arr) {
+		//
 	}
 
 }
