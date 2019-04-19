@@ -25,8 +25,13 @@ public class notlast {
 		System.out.println(Arrays.asList(milk).indexOf(7));
 	}
 	
-	public static void secondSmallest(int[] arr) {
-		//
+	public static void secondSmallest(Integer[] milk, String[] cows) {
+		boolean tie = false;
+		int min = Collections.min(Arrays.asList(milk));
+		int secondMin = min;
+		while (!tie && secondMin == min) {
+			
+		}
 	}
 
 }
