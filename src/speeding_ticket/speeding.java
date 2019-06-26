@@ -11,6 +11,7 @@ public class speeding {
 		int [][] roadSegments = new int[N][2];
 		int[][] cowSegments = new int[M][2];
 		
+		
 		for (int i = 0; i < N; i++) {
 			roadSegments[i][0] = infile.nextInt();
 			roadSegments[i][1] = infile.nextInt();
@@ -22,37 +23,32 @@ public class speeding {
 		}
 		
 		int maxOverLimit = 0;
-		for (int i = 1; i <= 100; i++) {
+		for (int i = 0; i <= 100; i++) {
 			int overLimit = 0;
-			for (int j = 0; j < N; j++) {
-				if (j == 1) {
-					if (inBetween(cowSegments[i][0], 0, roadSegments[i][0])) {
-						if (cowSegments[i][1] > roadSegments[i][1]) {
-							overLimit = cowSegments[i][1] - roadSegments[i][1];
-						}
-					}
-				} else {
-					if (inBetween(cowSegments[i][0], roadSegments[i - 1][0], roadSegments[i][0])) {
-						if (cowSegments[i][1] > roadSegments[i][1]) {
-							overLimit = cowSegments[i][1] - roadSegments[i][1];
-						}
-					}
-				}
-				
+			if (getSpeed(i, cowSegments) > getSpeed(i, roadSegments)) {
+				overLimit = getSpeed(i, cowSegments) - getSpeed(i, roadSegments);
 				if (overLimit > maxOverLimit) {
 					maxOverLimit = overLimit;
 				}
 			}
 		}
 		
-		System.out.println(maxOverLimit);
+		infile.close();
+		PrintWriter outfile = new PrintWriter("speeding.out");
+		outfile.println(maxOverLimit);
+		outfile.close();
 	}
 	
-	public static boolean inBetween(int a, int b, int c) {
-		if (a >= b && a <= c) {
-			return true;
+	public static int getSpeed(int x, int[][] speedSegments) {
+		int mileSum = speedSegments[0][0];
+		int currSpeed = speedSegments[0][1];
+		for (int i = 1; i < speedSegments.length; i++) {
+			if (x > mileSum) {
+				mileSum += speedSegments[i][0];
+				currSpeed = speedSegments[i][1];
+			}
 		}
-		return false;
+		return currSpeed;
 	}
 
 }
